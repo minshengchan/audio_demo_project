@@ -322,6 +322,27 @@ class App {
     audio.addEventListener('play', () => {
       this.updatePlayButtonState(this.state.currentAudioSource);
     });
+
+    // 新增：播放進度更新
+    audio.addEventListener('timeupdate', () => {
+      if (this.state.currentAudioSource && !audio.paused) {
+        const progress = (audio.currentTime / audio.duration) * 100;
+        this.updateRowProgress(this.state.currentAudioSource, progress);
+      }
+    });
+  }
+
+  updateRowProgress(src, progress) {
+    const activeBtns = document.querySelectorAll(`.play-btn[data-src="${src}"]`);
+    activeBtns.forEach(btn => {
+      const row = btn.closest('tr');
+      if (row) {
+        // 使用 linear-gradient 模擬進度條背景
+        // #e0e7ff 是 var(--primary-light) 的顏色
+        row.style.backgroundImage = `linear-gradient(to right, #e0e7ff ${progress}%, transparent ${progress}%)`;
+        row.style.backgroundRepeat = 'no-repeat';
+      }
+    });
   }
 
   attachPlayHandlers() {
@@ -346,7 +367,8 @@ class App {
         // 正在播放 -> 暫停
         audio.pause();
       } else {
-        // 暫停中 -> 繼續播放
+        // 暫停中 -> 重新播放
+        audio.currentTime = 0;
         audio.play().catch(err => console.error("播放失敗:", err));
       }
       return;
@@ -385,6 +407,12 @@ class App {
       // 只有當目前的 innerHTML 不是 playIcon 時才重置，避免閃爍 (雖然這裡直接重置也無妨)
       if (!btn.querySelector('.icon-play')) {
         btn.innerHTML = playIcon;
+      }
+      
+      // 清除列背景 (Progress Bar)
+      const row = btn.closest('tr');
+      if (row) {
+        row.style.backgroundImage = '';
       }
     });
 
