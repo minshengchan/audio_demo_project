@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>期末音檔 Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <!-- Google Fonts: Inter 字體設定 -->
+  <!-- 1. 預先建立與 Google Fonts 伺服器的連線，加快後續下載速度 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- 2. 實際載入 Inter 字體檔案 (包含字重 400, 500, 600, 700, 800) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/plan-info.css">
+
+  <!-- SheetJS -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+  
+  <div class="container">
+    <header>
+      <h1>期末音檔 Demo</h1>
+      <p class="subtitle">
+        國立雲林科技大學 多媒體技術與應用實驗室 期末音檔展示平台
+      </p>
+    </header>
+
+    <div class="card">
+      <div class="controls">
+        <div class="control-group">
+          <div class="control-label">選擇語言 Language</div>
+          <div class="tabs" id="lang-tabs">
+            <!-- JS Rendered -->
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="control-label">選擇方案 Plan</div>
+          <div class="tabs" id="plan-tabs">
+            <!-- JS Rendered -->
+          </div>
+        </div>
+      </div>
+
+      <!-- 新增：方案配置資訊 -->
+      <div id="plan-info" class="plan-info-container">
+        <!-- JS Rendered -->
+      </div>
+
+      <div class="tables-container" id="tables-container">
+        <!-- JS Rendered -->
+        <div class="loading">載入中...</div>
+      </div>
+
+      <footer>
+        Power by <a href="https://www.yuntech.edu.tw/" target="_blank">國立雲林科技大學</a> × <a href="https://sites.google.com/view/yuntech-mtalab/home" target="_blank">多媒體技術與應用實驗室</a>
+      </footer>
+    </div>
+  </div>
+
+  <!-- 全域 audio 元件 -->
+  <audio id="global-audio" preload="none"></audio>
+
+  <!-- Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
