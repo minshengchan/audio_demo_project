@@ -245,7 +245,7 @@ class App {
             <tr>
               <th class="col-question">問題</th>
               <th class="col-asr">ASR 辨識結果</th>
-              <th class="col-llm">LLM 回覆結果</th>
+              <th class="col-llm">LLM回覆(翻譯後)</th>
               <th class="col-audio">音檔</th>
             </tr>
           </thead>
